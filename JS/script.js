@@ -50,7 +50,7 @@ const backgroundImage = {
   
 //Disparos array
 const disparos = []
-console.log(disparos)
+
 
 //zombies array
 const zombies = []
@@ -179,14 +179,14 @@ function empezarJuego(){
         survivor.crearSurvivor()
 
         //crear disparos
-        disparos.forEach((disparar) => {
+        disparos.forEach((disparar,indexdisparar) => {
             disparar.crearDisparo()
 
         zombies.forEach((z,indexz) => {
             if(disparar.y + 10 >= z.y && 
                 disparar.x <= z.x +50 && 
                 disparar.x >= z.x && 
-                disparar.y <= z.y )
+                disparar.y <= z.y + 50 )
             {
                 zombies.splice(indexz, 1)
                 disparos.splice(indexdisparar, 1)
@@ -196,7 +196,8 @@ function empezarJuego(){
   
         });
 
-        mainCtx.fillText(`${survivor.kill} kills`, 200, 10)
+        mainCtx.fillText(`${survivor.kill} kills`, 200, 40)
+        mainCtx.font = "25px Arial"
 
         //crear zombies de frente
         zombies.forEach((zombie)=>{
@@ -234,7 +235,7 @@ btn.addEventListener("click", () =>{
     setInterval(() => {
         let PosicionX = Math.floor(Math.random()*790)
         if(PosicionX < 650 && PosicionX > 150){
-        const z = new zombie(PosicionX, 0, +1)
+        const z = new zombie(PosicionX, -50, +1)
     zombies.push(z)}
     }, 3500);
     
