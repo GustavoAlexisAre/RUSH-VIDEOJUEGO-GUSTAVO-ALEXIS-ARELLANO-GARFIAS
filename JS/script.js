@@ -1,3 +1,4 @@
+//background - movimiento 
 const img = new Image();
 
 let backgroundCanvas;
@@ -48,6 +49,23 @@ const backgroundImage = {
     mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
   }
   
+
+  //Cargar Imagenes 
+const vida120 = new Image()
+vida120.src = '/ProyectoVideoJuegoRUSH/assets/img/healthbar120.jpg'
+const vida100 = new Image()
+vida100.src = '/ProyectoVideoJuegoRUSH/assets/img/healthbar100.jpg'
+const vida80 = new Image()
+vida80.src = '/ProyectoVideoJuegoRUSH/assets/img/healthbar80.jpg'
+const vida60 = new Image()
+vida60.src = '/ProyectoVideoJuegoRUSH/assets/img/healthbar60.jpg'
+const vida40 = new Image()
+vida40.src = '/ProyectoVideoJuegoRUSH/assets/img/healthbar40.jpg'
+const vida20 = new Image()
+vida20.src = '/ProyectoVideoJuegoRUSH/assets/img/healthbar20.jpg'
+
+//Empieza Juego
+
 //Disparos array
 const disparos = []
 
@@ -71,6 +89,7 @@ class Survivor{
         this.h = h; 
         this.velocidad = 20;
         this.kill = 0;
+        this.vida = 120;
     }
 
     //Metodos
@@ -174,6 +193,7 @@ function empezarJuego(){
     setInterval(()=> {
         requestAnimationFrame(updateBackgroundCanvas);
         mainCtx.clearRect(0, 0, 840, 650)
+         
         
         //crear Survivor
         survivor.crearSurvivor()
@@ -196,75 +216,86 @@ function empezarJuego(){
   
         });
 
-        
-
+       
         mainCtx.fillText(`${survivor.kill} kills`, 200, 40)
         mainCtx.font = "25px Arial"
 
         //crear zombies de frente
-        zombies.forEach((zombie)=>{
+        zombies.forEach((zombie, indexzombie)=>{
             zombie.crearZombies()
             if(survivor.y + 50 >= zombie.y && 
                 survivor.x <= zombie.x + 50 && 
                 survivor.x +50 >= zombie.x && 
                 survivor.y <= zombie.y + 50 )
             {
-                alert("perdiste")
+                survivor.vida-= 20
+                zombies.splice(indexzombie,1)
+                console.log(survivor.vida)
             }
         })
-        //crear zombies de atras
-        horda1.forEach((zombie1)=>{
+        //crear zombies de atras y quitar vidas 
+        horda1.forEach((zombie1, indexzombie1)=>{
             zombie1.crearZombies()
             if(survivor.y + 50 >= zombie1.y && 
                 survivor.x <= zombie1.x + 50 && 
                 survivor.x +50 >= zombie1.x && 
                 survivor.y <= zombie1.y + 50 )
             {
-                alert("perdiste")
+                survivor.vida-= 20
+                horda1.splice(indexzombie1,1)
+                console.log(survivor.vida)
             }
         })
-        horda2.forEach((zombie2)=>{
+        horda2.forEach((zombie2, indexzombie2)=>{
             zombie2.crearZombies()
             if(survivor.y + 50 >= zombie2.y && 
                 survivor.x <= zombie2.x + 50 && 
                 survivor.x +50 >= zombie2.x && 
                 survivor.y <= zombie2.y + 50 )
             {
-                alert("perdiste")
+                survivor.vida-= 20
+                horda2.splice(indexzombie2,1)
+                console.log(survivor.vida)
             }
         })
-        horda3.forEach((zombie3)=>{ 
+        horda3.forEach((zombie3, indexzombie3)=>{ 
             zombie3.crearZombies()
             if(survivor.y + 50 >= zombie3.y && 
                 survivor.x <= zombie3.x + 50 && 
                 survivor.x +50 >= zombie3.x && 
                 survivor.y <= zombie3.y + 50 )
             {
-                alert("perdiste")
+                survivor.vida-=20
+                horda3.splice(indexzombie3,1)
+                console.log(survivor.vida)
             }
         })
-        horda4.forEach((zombie4)=>{
+        horda4.forEach((zombie4, indexzombie4)=>{
             zombie4.crearZombies()
             if(survivor.y + 50 >= zombie4.y && 
                 survivor.x <= zombie4.x + 50 && 
                 survivor.x +50 >= zombie4.x && 
                 survivor.y <= zombie4.y + 50 )
             {
-                alert("perdiste")
+                survivor.vida-=20
+                horda4.splice(indexzombie4,1)
+                console.log(survivor.vida)
             }
         })
-        horda5.forEach((zombie5)=>{
+        horda5.forEach((zombie5, indexzombie5)=>{
             zombie5.crearZombies()
             if(survivor.y + 50 >= zombie5.y && 
                 survivor.x <= zombie5.x + 50 && 
                 survivor.x +50 >= zombie5.x && 
                 survivor.y <= zombie5.y + 50 )
             {
-                alert("perdiste")
+                survivor.vida-=20
+                horda5.splice(indexzombie5,1)
+                console.log(survivor.vida)
             }
         })
 
-        
+        healthbar()
 
     }, 1000 / 60)
 }
@@ -305,3 +336,28 @@ btn.addEventListener("click", () =>{
 
     btn.classList.add("none")
 })
+
+
+
+
+function healthbar(){
+    if(survivor.vida === 120){
+        mainCtx.drawImage(vida120,500, 40, 310, 60 )
+    }
+     if(survivor.vida === 100){
+        mainCtx.drawImage(vida100,500, 40, 310, 60 )
+    }
+     if(survivor.vida === 80){
+        mainCtx.drawImage(vida80,500, 40, 310 , 60 )
+    }
+     if(survivor.vida === 60){
+        mainCtx.drawImage(vida60,500, 40, 310, 60 )
+    }
+     if(survivor.vida === 40){
+        mainCtx.drawImage(vida40,500, 40, 310 , 60 )
+    }
+     if(survivor.vida === 20){
+        mainCtx.drawImage(vida20,500, 40, 310, 60 )
+    }
+}
+
