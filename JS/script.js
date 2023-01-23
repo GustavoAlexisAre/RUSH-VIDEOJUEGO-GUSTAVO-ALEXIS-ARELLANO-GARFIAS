@@ -145,7 +145,7 @@ document.addEventListener("keydown", (evento)=>{
     switch(evento.key){
         case "d":
         case "D":
-        case "ArrowRigth":
+        case "ArrowRight":
             survivor.derecha()
             break;
         case "a":
@@ -184,7 +184,7 @@ function empezarJuego(){
 
         zombies.forEach((z,indexz) => {
             if(disparar.y + 10 >= z.y && 
-                disparar.x <= z.x +50 && 
+                disparar.x <= z.x + 50 && 
                 disparar.x >= z.x && 
                 disparar.y <= z.y + 50 )
             {
@@ -196,28 +196,72 @@ function empezarJuego(){
   
         });
 
+        
+
         mainCtx.fillText(`${survivor.kill} kills`, 200, 40)
         mainCtx.font = "25px Arial"
 
         //crear zombies de frente
         zombies.forEach((zombie)=>{
             zombie.crearZombies()
+            if(survivor.y + 50 >= zombie.y && 
+                survivor.x <= zombie.x + 50 && 
+                survivor.x +50 >= zombie.x && 
+                survivor.y <= zombie.y + 50 )
+            {
+                alert("perdiste")
+            }
         })
         //crear zombies de atras
         horda1.forEach((zombie1)=>{
             zombie1.crearZombies()
+            if(survivor.y + 50 >= zombie1.y && 
+                survivor.x <= zombie1.x + 50 && 
+                survivor.x +50 >= zombie1.x && 
+                survivor.y <= zombie1.y + 50 )
+            {
+                alert("perdiste")
+            }
         })
         horda2.forEach((zombie2)=>{
             zombie2.crearZombies()
+            if(survivor.y + 50 >= zombie2.y && 
+                survivor.x <= zombie2.x + 50 && 
+                survivor.x +50 >= zombie2.x && 
+                survivor.y <= zombie2.y + 50 )
+            {
+                alert("perdiste")
+            }
         })
         horda3.forEach((zombie3)=>{ 
             zombie3.crearZombies()
+            if(survivor.y + 50 >= zombie3.y && 
+                survivor.x <= zombie3.x + 50 && 
+                survivor.x +50 >= zombie3.x && 
+                survivor.y <= zombie3.y + 50 )
+            {
+                alert("perdiste")
+            }
         })
         horda4.forEach((zombie4)=>{
             zombie4.crearZombies()
+            if(survivor.y + 50 >= zombie4.y && 
+                survivor.x <= zombie4.x + 50 && 
+                survivor.x +50 >= zombie4.x && 
+                survivor.y <= zombie4.y + 50 )
+            {
+                alert("perdiste")
+            }
         })
         horda5.forEach((zombie5)=>{
             zombie5.crearZombies()
+            if(survivor.y + 50 >= zombie5.y && 
+                survivor.x <= zombie5.x + 50 && 
+                survivor.x +50 >= zombie5.x && 
+                survivor.y <= zombie5.y + 50 )
+            {
+                alert("perdiste")
+            }
         })
 
         
@@ -237,7 +281,7 @@ btn.addEventListener("click", () =>{
         if(PosicionX < 650 && PosicionX > 150){
         const z = new zombie(PosicionX, -50, +1)
     zombies.push(z)}
-    }, 3500);
+    }, 1000);
     
     setInterval(()=>{
         let PosicionX = Math.floor(Math.random()*790)
