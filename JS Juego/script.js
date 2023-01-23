@@ -70,6 +70,7 @@ class Survivor{
         this.w = w;
         this.h = h; 
         this.velocidad = 20;
+        this.kill = 0;
     }
 
     //Metodos
@@ -182,15 +183,20 @@ function empezarJuego(){
             disparar.crearDisparo()
 
         zombies.forEach((z,indexz) => {
-            if((disparar.y + 10) >= z.y && disparar.y <= z.y)
+            if(disparar.y + 10 >= z.y && 
+                disparar.x <= z.x +50 && 
+                disparar.x >= z.x && 
+                disparar.y <= z.y )
             {
                 zombies.splice(indexz, 1)
                 disparos.splice(indexdisparar, 1)
-                console.log(zombies)
+                survivor.kill++
             }
         })   
-            
+  
         });
+
+        mainCtx.fillText(`${survivor.kill} kills`, 200, 10)
 
         //crear zombies de frente
         zombies.forEach((zombie)=>{
@@ -203,7 +209,7 @@ function empezarJuego(){
         horda2.forEach((zombie2)=>{
             zombie2.crearZombies()
         })
-        horda3.forEach((zombie3)=>{
+        horda3.forEach((zombie3)=>{ 
             zombie3.crearZombies()
         })
         horda4.forEach((zombie4)=>{
@@ -226,24 +232,28 @@ btn.addEventListener("click", () =>{
     
     //Personaje - Zombie 
     setInterval(() => {
-        const PosicionX = Math.floor(Math.random()*790)
+        let PosicionX = Math.floor(Math.random()*790)
+        if(PosicionX < 650 && PosicionX > 150){
         const z = new zombie(PosicionX, 0, +1)
-    zombies.push(z)
-    }, 5000);
+    zombies.push(z)}
+    }, 3500);
     
     setInterval(()=>{
-        const zombies1 = new zombie(150, 650, -.04)
+        let PosicionX = Math.floor(Math.random()*790)
+        if(PosicionX < 650 && PosicionX > 150){
+        const zombies1 = new zombie(PosicionX, 650, -.04)
             horda1.push(zombies1)
-        const zombies2 = new zombie(250, 650, -.04)
+        const zombies2 = new zombie(PosicionX, 650, -.04)
             horda2.push(zombies2)
-        const zombies3 = new zombie(350, 650, -.04)
+        const zombies3 = new zombie(PosicionX, 650, -.04)
             horda3.push(zombies3)
-        const zombies4 = new zombie(450, 650, -.04)
+        const zombies4 = new zombie(PosicionX, 650, -.04)
             horda4.push(zombies4)  
-        const zombies5 = new zombie(550, 650, -.04)   
+        const zombies5 = new zombie(PosicionX, 650, -.04)   
             horda5.push(zombies5)
-        const zombies6 = new zombie(650, 650, -.04)   
+        const zombies6 = new zombie(PosicionX, 650, -.04)   
             horda5.push(zombies6)   
+        }
     }, 1000)
 
     
