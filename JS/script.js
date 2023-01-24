@@ -50,7 +50,12 @@ const backgroundImage = {
   }
   
 
+  //audio 
+const backgroundSound =new Audio('/ProyectoVideoJuegoRUSH/assets/audio/565185__x3nus__ww2-1945-action-loop.wav')
+const shoot1 = new Audio("/ProyectoVideoJuegoRUSH/assets/audio/368733__leszek-szary__shoot-2.wav")
+
   //Cargar Imagenes 
+  //healthbar
 const vida120 = new Image()
 vida120.src = '/ProyectoVideoJuegoRUSH/assets/img/healthbar120.jpg'
 const vida100 = new Image()
@@ -64,19 +69,42 @@ vida40.src = '/ProyectoVideoJuegoRUSH/assets/img/healthbar40.jpg'
 const vida20 = new Image()
 vida20.src = '/ProyectoVideoJuegoRUSH/assets/img/healthbar20.jpg'
 
+//zombies
+
 const imgZombie1 = new Image()
 imgZombie1.src = '/ProyectoVideoJuegoRUSH/assets/img/ZombieWalk.png'
-
+const imgZombie3 = new Image()
+imgZombie3.src = '/ProyectoVideoJuegoRUSH/assets/img/ZombieWalk2.png'
+const imgZombie4 = new Image()
+imgZombie4.src = '/ProyectoVideoJuegoRUSH/assets/img/ZombieWalk4.png'
+const imgZombie5 = new Image()
+imgZombie5.src = '/ProyectoVideoJuegoRUSH/assets/img/ZombieWalk5.png'
+const imgZombie6 = new Image()
+imgZombie6.src = '/ProyectoVideoJuegoRUSH/assets/img/ZombieWalk6.png'
 const imgZombie2 = new Image()
 imgZombie2.src = '/ProyectoVideoJuegoRUSH/assets/img/ZombieWalk3.png'
 
+//survivor
+
 const imgSurvival1 = new Image()
 imgSurvival1.src='/ProyectoVideoJuegoRUSH/assets/img/survivor-shoot_handgun.png'
+
+//bala
 
 const imgBala1 = new Image()
 imgBala1.src = '/ProyectoVideoJuegoRUSH/assets/img/bullet.png'
 
 //Empieza Juego
+
+//Array Sonidos shoot
+
+// const shootSound = [shoot1, shoot2, shoot3]
+// const shootRandom = Math.floor(Math.random()*shootSound.length)
+// const shoot = shootSound[shootRandom]
+
+//Array Zombies Img
+const imgzombies = [imgZombie2, imgZombie4, imgZombie5]
+const imgzombiesb = [imgZombie1, imgZombie3, imgZombie6]
 
 //Disparos array
 const disparos = []
@@ -102,6 +130,7 @@ class Survivor{
         this.velocidad = 20;
         this.kill = 0;
         this.vida = 120;
+        
     }
 
     //Metodos
@@ -113,6 +142,9 @@ class Survivor{
    disparar(){
     const disparar = new disparo(this.x + 60, this.y)
     disparos.push(disparar)
+    shoot1.play()
+    shoot1.volume = 0.2
+
    }
    adelante(){
     if(this.y > 10){
@@ -156,20 +188,21 @@ crearDisparo(){
 
 //Clase - Zombie
 class zombie{
-    constructor(x,y,direccion){
+    constructor(x,y,direccion,img1){
     this.x = x;
     this.y = y;
     this.direccion = direccion
+    this.img1 = img1
     }
 crearZombies(){
     this.y= this.y + (this.direccion)
-    mainCtx.drawImage(imgZombie1, this.x, this.y, 60, 60)
+    mainCtx.drawImage(this.img1, this.x, this.y, 60, 60)
    
 }
 
 crearZombiesB(){
     this.y= this.y + (this.direccion)
-    mainCtx.drawImage(imgZombie2, this.x, this.y, 60, 60)
+    mainCtx.drawImage(this.img1, this.x, this.y, 60, 60)
 }
 }
 
@@ -212,7 +245,7 @@ function empezarJuego(){
         mainCtx.clearRect(0, 0, 840, 650)
          
         
-        //crear Survivor
+        //crear Survivor 
         survivor.crearSurvivor()
 
         //crear disparos
@@ -313,6 +346,13 @@ function empezarJuego(){
         })
 
         healthbar()
+        backgroundSound.play()
+        backgroundSound.volume = 0.1
+
+        if(survivor.vida === 0){
+            
+
+        }
 
     }, 1000 / 60)
 }
@@ -326,25 +366,29 @@ btn.addEventListener("click", () =>{
     //Personaje - Zombie 
     setInterval(() => {
         let PosicionX = Math.floor(Math.random()*790)
+        let zombieAleatorioA = Math.floor(Math.random()*imgzombies.length)
+        let zombieDown = imgzombies[zombieAleatorioA]
         if(PosicionX < 650 && PosicionX > 150){
-        const z = new zombie(PosicionX, -50, +1)
+        const z = new zombie(PosicionX, -50, +1, zombieDown)
         zombies.push(z)}
     }, 1000);
     
     setInterval(()=>{
         let PosicionX = Math.floor(Math.random()*790)
+        let zombieAleatorioB = Math.floor(Math.random()*imgzombiesb.length)
+        let zombieUp = imgzombiesb[zombieAleatorioB]
         if(PosicionX < 650 && PosicionX > 150){
-        const zombies1 = new zombie(PosicionX, 650, -.04)
+        const zombies1 = new zombie(PosicionX, 650, -.04, zombieUp)
             horda1.push(zombies1)
-        const zombies2 = new zombie(PosicionX, 650, -.04)
+        const zombies2 = new zombie(PosicionX, 650, -.04, zombieUp)
             horda2.push(zombies2)
-        const zombies3 = new zombie(PosicionX, 650, -.04)
+        const zombies3 = new zombie(PosicionX, 650, -.04, zombieUp)
             horda3.push(zombies3)
-        const zombies4 = new zombie(PosicionX, 650, -.04)
+        const zombies4 = new zombie(PosicionX, 650, -.04, zombieUp)
             horda4.push(zombies4)  
-        const zombies5 = new zombie(PosicionX, 650, -.04)   
+        const zombies5 = new zombie(PosicionX, 650, -.04, zombieUp)   
             horda5.push(zombies5)
-        const zombies6 = new zombie(PosicionX, 650, -.04)   
+        const zombies6 = new zombie(PosicionX, 650, -.04, zombieUp)   
             horda5.push(zombies6)   
         }
     }, 1000)
@@ -353,8 +397,6 @@ btn.addEventListener("click", () =>{
 
     btn.classList.add("none")
 })
-
-
 
 
 function healthbar(){
@@ -377,4 +419,3 @@ function healthbar(){
         mainCtx.drawImage(vida20,500, 40, 310, 60 )
     }
 }
-
