@@ -1,3 +1,9 @@
+//seleccion de botones y canvas para desaparecerlos al game over
+let canvas = document.querySelector(".canvas");
+let btn1 = document.querySelector(".botones");
+let gameOver = document.querySelector(".gameOver")
+let win = document.querySelector(".win")
+
 //background - movimiento 
 const img = new Image();
 
@@ -50,9 +56,12 @@ const backgroundImage = {
   }
   
 
-  //audio 
+//audio 
 const backgroundSound =new Audio('/ProyectoVideoJuegoRUSH/assets/audio/565185__x3nus__ww2-1945-action-loop.wav')
 const shoot1 = new Audio("/ProyectoVideoJuegoRUSH/assets/audio/368733__leszek-szary__shoot-2.wav")
+const dead = new Audio("/ProyectoVideoJuegoRUSH/assets/audio/resident-evil-game-over.mp3")
+const helicopter = new Audio("/ProyectoVideoJuegoRUSH/assets/audio/high-quality-helicopter-sound-effects.mp3")
+const victory = new Audio("/ProyectoVideoJuegoRUSH/assets/audio/STREET FIGHTER V _ Guile Theme (long version).mp3")
 
   //Cargar Imagenes 
   //healthbar
@@ -95,12 +104,6 @@ const imgBala1 = new Image()
 imgBala1.src = '/ProyectoVideoJuegoRUSH/assets/img/bullet.png'
 
 //Empieza Juego
-
-//Array Sonidos shoot
-
-// const shootSound = [shoot1, shoot2, shoot3]
-// const shootRandom = Math.floor(Math.random()*shootSound.length)
-// const shoot = shootSound[shootRandom]
 
 //Array Zombies Img
 const imgzombies = [imgZombie2, imgZombie4, imgZombie5]
@@ -267,7 +270,7 @@ function empezarJuego(){
         });
 
        
-        mainCtx.fillText(`${survivor.kill} kills`, 200, 40)
+        mainCtx.fillText(`${survivor.kill} kills`, 190, 90)
         mainCtx.font = "25px Arial"
 
         //crear zombies de frente
@@ -280,7 +283,7 @@ function empezarJuego(){
             {
                 survivor.vida-= 20
                 zombies.splice(indexzombie,1)
-                console.log(survivor.vida)
+                
             }
         })
         //crear zombies de atras y quitar vidas 
@@ -291,9 +294,9 @@ function empezarJuego(){
                 survivor.x +50 >= zombie1.x && 
                 survivor.y <= zombie1.y + 50 )
             {
-                survivor.vida-= 20
+                survivor.vida-= 5
                 horda1.splice(indexzombie1,1)
-                console.log(survivor.vida)
+                
             }
         })
         horda2.forEach((zombie2, indexzombie2)=>{
@@ -303,9 +306,9 @@ function empezarJuego(){
                 survivor.x +50 >= zombie2.x && 
                 survivor.y <= zombie2.y + 50 )
             {
-                survivor.vida-= 20
+                survivor.vida-= 5
                 horda2.splice(indexzombie2,1)
-                console.log(survivor.vida)
+                
             }
         })
         horda3.forEach((zombie3, indexzombie3)=>{ 
@@ -315,9 +318,9 @@ function empezarJuego(){
                 survivor.x +50 >= zombie3.x && 
                 survivor.y <= zombie3.y + 50 )
             {
-                survivor.vida-=20
+                survivor.vida-=5
                 horda3.splice(indexzombie3,1)
-                console.log(survivor.vida)
+                
             }
         })
         horda4.forEach((zombie4, indexzombie4)=>{
@@ -327,9 +330,9 @@ function empezarJuego(){
                 survivor.x +50 >= zombie4.x && 
                 survivor.y <= zombie4.y + 50 )
             {
-                survivor.vida-=20
+                survivor.vida-=5
                 horda4.splice(indexzombie4,1)
-                console.log(survivor.vida)
+                
             }
         })
         horda5.forEach((zombie5, indexzombie5)=>{
@@ -339,9 +342,9 @@ function empezarJuego(){
                 survivor.x +50 >= zombie5.x && 
                 survivor.y <= zombie5.y + 50 )
             {
-                survivor.vida-=20
+                survivor.vida-=5
                 horda5.splice(indexzombie5,1)
-                console.log(survivor.vida)
+               
             }
         })
 
@@ -349,9 +352,25 @@ function empezarJuego(){
         backgroundSound.play()
         backgroundSound.volume = 0.1
 
-        if(survivor.vida === 0){
-            
+        if(survivor.vida <= 0){
+            canvas.classList.add("none")
+            btn1.classList.add("none")
+            gameOver.classList.remove("none")
+            backgroundSound.pause()
+            dead.play()
+            dead.volume = 0.3
+        }
 
+        if(survivor.kill === 30){
+            canvas.classList.add("none")
+            btn1.classList.add("none")
+            win.classList.remove("none")
+            backgroundSound.pause()
+            survivor.vida == 10000000000000
+            helicopter.play()
+            helicopter.volume = 0.1
+            victory.play()
+            victory.volume = 0.1
         }
 
     }, 1000 / 60)
@@ -362,6 +381,8 @@ let btn = document.getElementById("jugar");
 btn.addEventListener("click", () =>{
     
     empezarJuego()
+    backgroundSound.play()
+    backgroundSound.volume = 0.1
     
     //Personaje - Zombie 
     setInterval(() => {
@@ -403,19 +424,20 @@ function healthbar(){
     if(survivor.vida === 120){
         mainCtx.drawImage(vida120,500, 40, 310, 60 )
     }
-     if(survivor.vida === 100){
+     if(survivor.vida <= 100){
         mainCtx.drawImage(vida100,500, 40, 310, 60 )
     }
-     if(survivor.vida === 80){
+     if(survivor.vida <= 80){
         mainCtx.drawImage(vida80,500, 40, 310 , 60 )
     }
-     if(survivor.vida === 60){
+     if(survivor.vida <= 60){
         mainCtx.drawImage(vida60,500, 40, 310, 60 )
     }
-     if(survivor.vida === 40){
+     if(survivor.vida <= 40){
         mainCtx.drawImage(vida40,500, 40, 310 , 60 )
     }
-     if(survivor.vida === 20){
+     if(survivor.vida <= 20){
         mainCtx.drawImage(vida20,500, 40, 310, 60 )
     }
 }
+

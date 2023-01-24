@@ -41,8 +41,8 @@ button{
     border: 4px solid crimson;
 }
 
-.none {
-    display: none;
+.none  {
+    display: none !important;
 }
 
 .background{
@@ -64,3 +64,26 @@ button span:hover{
     animation: flash;
     animation-duration: 2s;
 }
+
+.gameOver{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/ProyectoVideoJuegoRUSH/assets/img/tumblr_m9aphoYsSL1rx1vvco1_400.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items:flex-end;
+}
+
+.win{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/ProyectoVideoJuegoRUSH/assets/img/helicopter.gif");
+    background-size:cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items:flex-end;
+}
+    
