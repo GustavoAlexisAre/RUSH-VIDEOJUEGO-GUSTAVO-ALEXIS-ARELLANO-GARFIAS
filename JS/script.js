@@ -64,6 +64,18 @@ vida40.src = '/ProyectoVideoJuegoRUSH/assets/img/healthbar40.jpg'
 const vida20 = new Image()
 vida20.src = '/ProyectoVideoJuegoRUSH/assets/img/healthbar20.jpg'
 
+const imgZombie1 = new Image()
+imgZombie1.src = '/ProyectoVideoJuegoRUSH/assets/img/ZombieWalk.png'
+
+const imgZombie2 = new Image()
+imgZombie2.src = '/ProyectoVideoJuegoRUSH/assets/img/ZombieWalk3.png'
+
+const imgSurvival1 = new Image()
+imgSurvival1.src='/ProyectoVideoJuegoRUSH/assets/img/survivor-shoot_handgun.png'
+
+const imgBala1 = new Image()
+imgBala1.src = '/ProyectoVideoJuegoRUSH/assets/img/bullet.png'
+
 //Empieza Juego
 
 //Disparos array
@@ -94,12 +106,12 @@ class Survivor{
 
     //Metodos
    crearSurvivor(){
-        mainCtx.fillStyle = "white";
-        mainCtx.fillRect(this.x, this.y, this.w, this.h)
+    mainCtx.drawImage(imgSurvival1, this.x, this.y, this.w, this.h)
         
    }
+
    disparar(){
-    const disparar = new disparo(this.x + 40, this.y)
+    const disparar = new disparo(this.x + 60, this.y)
     disparos.push(disparar)
    }
    adelante(){
@@ -134,8 +146,7 @@ class disparo{
     }
     //Metodos
 crearDisparo(){
-    mainCtx.fillRect(this.x, this.y, 10, 10)
-    mainCtx.fillStyle = "white"
+    mainCtx.drawImage(imgBala1, this.x, this.y, 20, 30)
     this.y-= this.velocidad
     if(this.y > 640){
         disparos.shift()
@@ -152,12 +163,18 @@ class zombie{
     }
 crearZombies(){
     this.y= this.y + (this.direccion)
-    mainCtx.fillRect(this.x, this.y, 50, 50)
+    mainCtx.drawImage(imgZombie1, this.x, this.y, 60, 60)
+   
+}
+
+crearZombiesB(){
+    this.y= this.y + (this.direccion)
+    mainCtx.drawImage(imgZombie2, this.x, this.y, 60, 60)
 }
 }
 
  //Personaje - Survivor
- const survivor = new Survivor(393, 530, 50, 50)
+ const survivor = new Survivor(393, 530, 100, 75)
 
 //Teclas - Push
 document.addEventListener("keydown", (evento)=>{
@@ -203,7 +220,7 @@ function empezarJuego(){
             disparar.crearDisparo()
 
         zombies.forEach((z,indexz) => {
-            if(disparar.y + 10 >= z.y && 
+            if(disparar.y + 30 >= z.y && 
                 disparar.x <= z.x + 50 && 
                 disparar.x >= z.x && 
                 disparar.y <= z.y + 50 )
@@ -222,7 +239,7 @@ function empezarJuego(){
 
         //crear zombies de frente
         zombies.forEach((zombie, indexzombie)=>{
-            zombie.crearZombies()
+            zombie.crearZombiesB()
             if(survivor.y + 50 >= zombie.y && 
                 survivor.x <= zombie.x + 50 && 
                 survivor.x +50 >= zombie.x && 
@@ -311,7 +328,7 @@ btn.addEventListener("click", () =>{
         let PosicionX = Math.floor(Math.random()*790)
         if(PosicionX < 650 && PosicionX > 150){
         const z = new zombie(PosicionX, -50, +1)
-    zombies.push(z)}
+        zombies.push(z)}
     }, 1000);
     
     setInterval(()=>{
