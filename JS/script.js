@@ -1,10 +1,14 @@
+//tiempo
+let tiempo = 0;
 //seleccion de botones y canvas para desaparecerlos al game over
+
 let canvas = document.querySelector(".canvas");
 let btn1 = document.querySelector(".botones");
 let gameOver = document.querySelector(".gameOver")
 let win = document.querySelector(".win")
 
 //background - movimiento 
+
 const img = new Image();
 
 let backgroundCanvas;
@@ -62,9 +66,12 @@ const shoot1 = new Audio("/ProyectoVideoJuegoRUSH/assets/audio/368733__leszek-sz
 const dead = new Audio("/ProyectoVideoJuegoRUSH/assets/audio/resident-evil-game-over.mp3")
 const helicopter = new Audio("/ProyectoVideoJuegoRUSH/assets/audio/high-quality-helicopter-sound-effects.mp3")
 const victory = new Audio("/ProyectoVideoJuegoRUSH/assets/audio/STREET FIGHTER V _ Guile Theme (long version).mp3")
+const winSound = new Audio("/ProyectoVideoJuegoRUSH/assets/audio/You Win (Street Fighter) - Sound Effect.mp3")
 
-  //Cargar Imagenes 
-  //healthbar
+//Cargar Imagenes 
+
+//healthbar
+
 const vida120 = new Image()
 vida120.src = '/ProyectoVideoJuegoRUSH/assets/img/healthbar120.jpg'
 const vida100 = new Image()
@@ -103,6 +110,10 @@ imgSurvival1.src='/ProyectoVideoJuegoRUSH/assets/img/survivor-shoot_handgun.png'
 const imgBala1 = new Image()
 imgBala1.src = '/ProyectoVideoJuegoRUSH/assets/img/bullet.png'
 
+
+//firts aid kit
+const kit = new Image()
+kit.src = '/ProyectoVideoJuegoRUSH/assets/img/first_aid_kit_PNG135.png'
 //Empieza Juego
 
 //Array Zombies Img
@@ -123,6 +134,10 @@ const horda3 = []
 const horda4 = []
 const horda5 = []
 const horda6 = []
+
+//kit vida array 
+const kits = []
+
 //Clase - Survivor
 class Survivor{
     constructor(x, y, w, h){
@@ -209,6 +224,21 @@ crearZombiesB(){
 }
 }
 
+class kitVida{
+    constructor(x,y,direccion){
+        this.x = x;
+        this.y = y;
+        this.direccion = direccion
+        this.img1 = kit
+        }
+    crearKitVida(){
+        this.y= this.y + (this.direccion)
+        mainCtx.drawImage(this.img1, this.x, this.y, 50, 50)
+       
+    }
+    
+}
+
  //Personaje - Survivor
  const survivor = new Survivor(393, 530, 100, 75)
 
@@ -250,6 +280,8 @@ function empezarJuego(){
         
         //crear Survivor 
         survivor.crearSurvivor()
+
+        
 
         //crear disparos
         disparos.forEach((disparar,indexdisparar) => {
@@ -348,6 +380,22 @@ function empezarJuego(){
             }
         })
 
+        kits.forEach((vidaKit, indexvidakill) =>
+        {
+            vidaKit.crearKitVida()
+            if(survivor.y + 50 >= vidaKit.y && 
+                survivor.x <= vidaKit.x + 50 && 
+                survivor.x +50 >= vidaKit.x && 
+                survivor.y <= vidaKit.y + 50){
+                    survivor.vida+=20
+                    kits.splice(indexvidakill, 1)
+                    if(survivor.vida > 120){
+                        survivor.vida = 120
+                    }
+            
+                }
+        })
+
         healthbar()
         backgroundSound.play()
         backgroundSound.volume = 0.1
@@ -371,9 +419,20 @@ function empezarJuego(){
             helicopter.volume = 0.1
             victory.play()
             victory.volume = 0.1
+            winSound.play()
+            winSound.volume = 0.4
+            if(tiempo > 3700){
+            winSound.pause()
+            }
+            
+            
         }
 
+        tiempo++
+    console.log(tiempo)
     }, 1000 / 60)
+
+    
 }
 
 //Seleccion del Boton Jugar 
@@ -390,7 +449,7 @@ btn.addEventListener("click", () =>{
         let zombieAleatorioA = Math.floor(Math.random()*imgzombies.length)
         let zombieDown = imgzombies[zombieAleatorioA]
         if(PosicionX < 650 && PosicionX > 150){
-        const z = new zombie(PosicionX, -50, +1, zombieDown)
+        const z = new zombie(PosicionX, -50, +2, zombieDown)
         zombies.push(z)}
     }, 1000);
     
@@ -413,7 +472,18 @@ btn.addEventListener("click", () =>{
             horda5.push(zombies6)   
         }
     }, 1000)
+    
+    //healtKit
+    setInterval(()=> {
+        let PosicionX = Math.floor(Math.random()*790)
+        if(PosicionX < 650 && PosicionX > 150){
+            const vidaKit = new kitVida(PosicionX, -50, +1)
+            kits.push(vidaKit)
+           }
 
+    }, 6000)
+
+    
     
 
     btn.classList.add("none")
@@ -421,7 +491,7 @@ btn.addEventListener("click", () =>{
 
 
 function healthbar(){
-    if(survivor.vida === 120){
+    if(survivor.vida >= 120){
         mainCtx.drawImage(vida120,500, 40, 310, 60 )
     }
      if(survivor.vida <= 100){
