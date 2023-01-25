@@ -1,11 +1,14 @@
 //tiempo
 let tiempo = 0;
+let velocidadA = (+2);
+let velocidadB = (-.09);
 //seleccion de botones y canvas para desaparecerlos al game over
 
 let canvas = document.querySelector(".canvas");
 let btn1 = document.querySelector(".botones");
 let gameOver = document.querySelector(".gameOver")
 let win = document.querySelector(".win")
+
 
 //background - movimiento 
 
@@ -114,6 +117,8 @@ imgBala1.src = '/ProyectoVideoJuegoRUSH/assets/img/bullet.png'
 //firts aid kit
 const kit = new Image()
 kit.src = '/ProyectoVideoJuegoRUSH/assets/img/first_aid_kit_PNG135.png'
+
+
 //Empieza Juego
 
 //Array Zombies Img
@@ -274,7 +279,7 @@ document.addEventListener("keydown", (evento)=>{
 //Funcion Empezar Juego
 function empezarJuego(){
     setInterval(()=> {
-        requestAnimationFrame(updateBackgroundCanvas);
+       requestAnimationFrame(updateBackgroundCanvas);
         mainCtx.clearRect(0, 0, 840, 650)
          
         
@@ -304,6 +309,7 @@ function empezarJuego(){
        
         mainCtx.fillText(`${survivor.kill} kills`, 190, 90)
         mainCtx.font = "25px Arial"
+        mainCtx.fillStyle = 'white';
 
         //crear zombies de frente
         zombies.forEach((zombie, indexzombie)=>{
@@ -399,7 +405,8 @@ function empezarJuego(){
         healthbar()
         backgroundSound.play()
         backgroundSound.volume = 0.1
-
+        
+        //Pantalla perder 
         if(survivor.vida <= 0){
             canvas.classList.add("none")
             btn1.classList.add("none")
@@ -409,12 +416,13 @@ function empezarJuego(){
             dead.volume = 0.3
         }
 
+        //pantalla ganar 
         if(survivor.kill === 30){
             canvas.classList.add("none")
             btn1.classList.add("none")
             win.classList.remove("none")
             backgroundSound.pause()
-            survivor.vida == 10000000000000
+            survivor.vida += 10^100000000
             helicopter.play()
             helicopter.volume = 0.1
             victory.play()
@@ -429,17 +437,16 @@ function empezarJuego(){
         }
 
         tiempo++
-    console.log(tiempo)
     }, 1000 / 60)
-
     
+
 }
 
 //Seleccion del Boton Jugar 
 let btn = document.getElementById("jugar");
 btn.addEventListener("click", () =>{
     
-    empezarJuego()
+    empezarJuego() 
     backgroundSound.play()
     backgroundSound.volume = 0.1
     
@@ -449,7 +456,7 @@ btn.addEventListener("click", () =>{
         let zombieAleatorioA = Math.floor(Math.random()*imgzombies.length)
         let zombieDown = imgzombies[zombieAleatorioA]
         if(PosicionX < 650 && PosicionX > 150){
-        const z = new zombie(PosicionX, -50, +2, zombieDown)
+        const z = new zombie(PosicionX, -50, velocidadA, zombieDown)
         zombies.push(z)}
     }, 1000);
     
@@ -458,17 +465,17 @@ btn.addEventListener("click", () =>{
         let zombieAleatorioB = Math.floor(Math.random()*imgzombiesb.length)
         let zombieUp = imgzombiesb[zombieAleatorioB]
         if(PosicionX < 650 && PosicionX > 150){
-        const zombies1 = new zombie(PosicionX, 650, -.04, zombieUp)
+        const zombies1 = new zombie(PosicionX, 650, velocidadB, zombieUp)
             horda1.push(zombies1)
-        const zombies2 = new zombie(PosicionX, 650, -.04, zombieUp)
+        const zombies2 = new zombie(PosicionX, 650, velocidadB, zombieUp)
             horda2.push(zombies2)
-        const zombies3 = new zombie(PosicionX, 650, -.04, zombieUp)
+        const zombies3 = new zombie(PosicionX, 650, velocidadB, zombieUp)
             horda3.push(zombies3)
-        const zombies4 = new zombie(PosicionX, 650, -.04, zombieUp)
+        const zombies4 = new zombie(PosicionX, 650, velocidadB, zombieUp)
             horda4.push(zombies4)  
-        const zombies5 = new zombie(PosicionX, 650, -.04, zombieUp)   
+        const zombies5 = new zombie(PosicionX, 650, velocidadB, zombieUp)   
             horda5.push(zombies5)
-        const zombies6 = new zombie(PosicionX, 650, -.04, zombieUp)   
+        const zombies6 = new zombie(PosicionX, 650, velocidadB, zombieUp)   
             horda5.push(zombies6)   
         }
     }, 1000)
@@ -488,10 +495,30 @@ btn.addEventListener("click", () =>{
 
     btn.classList.add("none")
 })
-
-
+//Seleccion Dificultad
+let level = document.querySelector(".nivel")
+level.addEventListener("click", () => {
+    switch (level.innerText) {
+        case "Facil":
+            level.innerText = "Intermedio"
+            velocidadA = (+3)
+            velocidadB = (-.11)
+            break;
+        case "Intermedio":
+            level.innerText = "Dificil"
+            velocidadA = (+4)
+            velocidadB = (-.15)
+            break;
+        default: 
+            level.innerText = "Facil"
+            velocidadA = (+2)
+            velocidadB = (-.04)
+            break;
+    }
+})
+// Barra de vida
 function healthbar(){
-    if(survivor.vida >= 120){
+    if(survivor.vida <= 120){
         mainCtx.drawImage(vida120,500, 40, 310, 60 )
     }
      if(survivor.vida <= 100){
