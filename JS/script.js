@@ -10,6 +10,7 @@ let gameOver = document.querySelector(".gameOver")
 let win = document.querySelector(".win")
 
 
+
 //background - movimiento 
 
 const img = new Image();
