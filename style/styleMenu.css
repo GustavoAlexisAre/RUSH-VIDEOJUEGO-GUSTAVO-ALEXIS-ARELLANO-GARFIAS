@@ -26,11 +26,11 @@ div{
     flex-direction: column;
     justify-content:end;
     align-items: center;
-    padding: 50px;
+   
 }
 
 button{
-    margin: 10px;
+    margin: 20px;
     height: auto;
     width: auto;
     background-color: transparent;
@@ -45,3 +45,21 @@ button:hover{
     animation-duration: 1s;
 }
 
+.oculto1{
+    display:none
+}
+
+.oculto:hover + .oculto1{
+    display:contents;
+    width: 100px;
+    height: 100px;
+}
+
+.instrucciones{
+    height: 200px;
+    
+}
+
+span{
+    padding: 20px;
+}
