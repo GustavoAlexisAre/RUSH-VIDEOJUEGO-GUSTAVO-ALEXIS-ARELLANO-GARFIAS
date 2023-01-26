@@ -5,7 +5,7 @@
 }
 
 body{
-    background-image: url("assets/img/bloodbackground.jpg");
+    background-image: url("../assets/img/bloodbackground.jpg");
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,7 +68,7 @@ button span:hover{
 .gameOver{
     width: 100vw;
     height: 100vh;
-    background-image: url("assets/img/tumblr_m9aphoYsSL1rx1vvco1_400.gif");
+    background-image: url("../assets/img/tumblr_m9aphoYsSL1rx1vvco1_400.gif");
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
@@ -79,7 +79,7 @@ button span:hover{
 .win{
     width: 100vw;
     height: 100vh;
-    background-image: url("assets/img/helicopter.gif");
+    background-image: url("../assets/img/helicopter.gif");
     background-size:cover;
     background-repeat: no-repeat;
     display: flex;
