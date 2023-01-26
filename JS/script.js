@@ -295,9 +295,9 @@ function empezarJuego(){
 
         zombies.forEach((z,indexz) => {
             if(disparar.y + 30 >= z.y && 
-                disparar.x <= z.x + 50 && 
+                disparar.x <= z.x + 60 && 
                 disparar.x >= z.x && 
-                disparar.y <= z.y + 50 )
+                disparar.y <= z.y + 60 )
             {
                 zombies.splice(indexz, 1)
                 disparos.splice(indexdisparar, 1)
@@ -315,9 +315,9 @@ function empezarJuego(){
         //crear zombies de frente
         zombies.forEach((zombie, indexzombie)=>{
             zombie.crearZombiesB()
-            if(survivor.y + 50 >= zombie.y && 
+            if(survivor.y + 75 >= zombie.y && 
                 survivor.x <= zombie.x + 50 && 
-                survivor.x +50 >= zombie.x && 
+                survivor.x + 100 >= zombie.x && 
                 survivor.y <= zombie.y + 50 )
             {
                 survivor.vida-= 20
@@ -328,9 +328,9 @@ function empezarJuego(){
         //crear zombies de atras y quitar vidas 
         horda1.forEach((zombie1, indexzombie1)=>{
             zombie1.crearZombies()
-            if(survivor.y + 50 >= zombie1.y && 
+            if(survivor.y + 75 >= zombie1.y && 
                 survivor.x <= zombie1.x + 50 && 
-                survivor.x +50 >= zombie1.x && 
+                survivor.x + 100 >= zombie1.x && 
                 survivor.y <= zombie1.y + 50 )
             {
                 survivor.vida-= 5
@@ -340,9 +340,9 @@ function empezarJuego(){
         })
         horda2.forEach((zombie2, indexzombie2)=>{
             zombie2.crearZombies()
-            if(survivor.y + 50 >= zombie2.y && 
+            if(survivor.y + 75 >= zombie2.y && 
                 survivor.x <= zombie2.x + 50 && 
-                survivor.x +50 >= zombie2.x && 
+                survivor.x + 100 >= zombie2.x && 
                 survivor.y <= zombie2.y + 50 )
             {
                 survivor.vida-= 5
@@ -352,9 +352,9 @@ function empezarJuego(){
         })
         horda3.forEach((zombie3, indexzombie3)=>{ 
             zombie3.crearZombies()
-            if(survivor.y + 50 >= zombie3.y && 
+            if(survivor.y + 75 >= zombie3.y && 
                 survivor.x <= zombie3.x + 50 && 
-                survivor.x +50 >= zombie3.x && 
+                survivor.x + 100 >= zombie3.x && 
                 survivor.y <= zombie3.y + 50 )
             {
                 survivor.vida-=5
@@ -364,9 +364,9 @@ function empezarJuego(){
         })
         horda4.forEach((zombie4, indexzombie4)=>{
             zombie4.crearZombies()
-            if(survivor.y + 50 >= zombie4.y && 
+            if(survivor.y + 75 >= zombie4.y && 
                 survivor.x <= zombie4.x + 50 && 
-                survivor.x +50 >= zombie4.x && 
+                survivor.x + 100 >= zombie4.x && 
                 survivor.y <= zombie4.y + 50 )
             {
                 survivor.vida-=5
@@ -376,9 +376,9 @@ function empezarJuego(){
         })
         horda5.forEach((zombie5, indexzombie5)=>{
             zombie5.crearZombies()
-            if(survivor.y + 50 >= zombie5.y && 
+            if(survivor.y + 75 >= zombie5.y && 
                 survivor.x <= zombie5.x + 50 && 
-                survivor.x +50 >= zombie5.x && 
+                survivor.x + 100 >= zombie5.x && 
                 survivor.y <= zombie5.y + 50 )
             {
                 survivor.vida-=5
@@ -390,9 +390,9 @@ function empezarJuego(){
         kits.forEach((vidaKit, indexvidakill) =>
         {
             vidaKit.crearKitVida()
-            if(survivor.y + 50 >= vidaKit.y && 
+            if(survivor.y + 75 >= vidaKit.y && 
                 survivor.x <= vidaKit.x + 50 && 
-                survivor.x +50 >= vidaKit.x && 
+                survivor.x +100 >= vidaKit.x && 
                 survivor.y <= vidaKit.y + 50){
                     survivor.vida+=20
                     kits.splice(indexvidakill, 1)
@@ -418,7 +418,7 @@ function empezarJuego(){
         }
 
         //pantalla ganar 
-        if(survivor.kill === 30){
+        if(survivor.kill === 5){
             canvas.classList.add("none")
             btn1.classList.add("none")
             win.classList.remove("none")
