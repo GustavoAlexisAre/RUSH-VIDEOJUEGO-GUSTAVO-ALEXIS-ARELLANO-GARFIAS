@@ -20,7 +20,7 @@ let ctx;
 let mainCanvas;
 let mainCtx;
 
-img.src = "../ProyectoVideoJuegoRUSH/assets/img/background-1.png"
+img.src = "/ProyectoVideoJuegoRUSH/assets/img/background-1.png"
 
 img.onload = function(){
 backgroundCanvas = document.getElementById("background");
@@ -65,59 +65,59 @@ const backgroundImage = {
   
 
 //audio 
-const backgroundSound =new Audio('../ProyectoVideoJuegoRUSH/assets/audio/565185__x3nus__ww2-1945-action-loop.wav')
-const shoot1 = new Audio("../ProyectoVideoJuegoRUSH/assets/audio/368733__leszek-szary__shoot-2.wav")
-const dead = new Audio("../ProyectoVideoJuegoRUSH/assets/audio/resident-evil-game-over.mp3")
-const helicopter = new Audio("../ProyectoVideoJuegoRUSH/assets/audio/high-quality-helicopter-sound-effects.mp3")
-const victory = new Audio("../ProyectoVideoJuegoRUSH/assets/audio/STREET FIGHTER V _ Guile Theme (long version).mp3")
-const winSound = new Audio("../ProyectoVideoJuegoRUSH/assets/audio/You Win (Street Fighter) - Sound Effect.mp3")
+const backgroundSound =new Audio('/ProyectoVideoJuegoRUSH/assets/audio/565185__x3nus__ww2-1945-action-loop.wav')
+const shoot1 = new Audio("/ProyectoVideoJuegoRUSH/assets/audio/368733__leszek-szary__shoot-2.wav")
+const dead = new Audio("/ProyectoVideoJuegoRUSH/assets/audio/resident-evil-game-over.mp3")
+const helicopter = new Audio("/ProyectoVideoJuegoRUSH/assets/audio/high-quality-helicopter-sound-effects.mp3")
+const victory = new Audio("/ProyectoVideoJuegoRUSH/assets/audio/STREET FIGHTER V _ Guile Theme (long version).mp3")
+const winSound = new Audio("/ProyectoVideoJuegoRUSH/assets/audio/You Win (Street Fighter) - Sound Effect.mp3")
 
 //Cargar Imagenes 
 
 //healthbar
 
 const vida120 = new Image()
-vida120.src = '../ProyectoVideoJuegoRUSH/assets/img/healthbar120.jpg'
+vida120.src = '/ProyectoVideoJuegoRUSH/assets/img/healthbar120.jpg'
 const vida100 = new Image()
-vida100.src = '../ProyectoVideoJuegoRUSH/assets/img/healthbar100.jpg'
+vida100.src = '/ProyectoVideoJuegoRUSH/assets/img/healthbar100.jpg'
 const vida80 = new Image()
-vida80.src = '../ProyectoVideoJuegoRUSH/assets/img/healthbar80.jpg'
+vida80.src = '/ProyectoVideoJuegoRUSH/assets/img/healthbar80.jpg'
 const vida60 = new Image()
-vida60.src = '../ProyectoVideoJuegoRUSH/assets/img/healthbar60.jpg'
+vida60.src = '/ProyectoVideoJuegoRUSH/assets/img/healthbar60.jpg'
 const vida40 = new Image()
-vida40.src = '../ProyectoVideoJuegoRUSH/assets/img/healthbar40.jpg'
+vida40.src = '/ProyectoVideoJuegoRUSH/assets/img/healthbar40.jpg'
 const vida20 = new Image()
-vida20.src = '../ProyectoVideoJuegoRUSH/assets/img/healthbar20.jpg'
+vida20.src = '/ProyectoVideoJuegoRUSH/assets/img/healthbar20.jpg'
 
 //zombies
 
 const imgZombie1 = new Image()
-imgZombie1.src = '../ProyectoVideoJuegoRUSH/assets/img/ZombieWalk.png'
+imgZombie1.src = '/ProyectoVideoJuegoRUSH/assets/img/ZombieWalk.png'
 const imgZombie3 = new Image()
-imgZombie3.src = '../ProyectoVideoJuegoRUSH/assets/img/ZombieWalk2.png'
+imgZombie3.src = '/ProyectoVideoJuegoRUSH/assets/img/ZombieWalk2.png'
 const imgZombie4 = new Image()
-imgZombie4.src = '../ProyectoVideoJuegoRUSH/assets/img/ZombieWalk4.png'
+imgZombie4.src = '/ProyectoVideoJuegoRUSH/assets/img/ZombieWalk4.png'
 const imgZombie5 = new Image()
-imgZombie5.src = '../ProyectoVideoJuegoRUSH/assets/img/ZombieWalk5.png'
+imgZombie5.src = '/ProyectoVideoJuegoRUSH/assets/img/ZombieWalk5.png'
 const imgZombie6 = new Image()
-imgZombie6.src = '../ProyectoVideoJuegoRUSH/assets/img/ZombieWalk6.png'
+imgZombie6.src = '/ProyectoVideoJuegoRUSH/assets/img/ZombieWalk6.png'
 const imgZombie2 = new Image()
-imgZombie2.src = '../ProyectoVideoJuegoRUSH/assets/img/ZombieWalk3.png'
+imgZombie2.src = '/ProyectoVideoJuegoRUSH/assets/img/ZombieWalk3.png'
 
 //survivor
 
 const imgSurvival1 = new Image()
-imgSurvival1.src='../ProyectoVideoJuegoRUSH/assets/img/survivor-shoot_handgun.png'
+imgSurvival1.src='/ProyectoVideoJuegoRUSH/assets/img/survivor-shoot_handgun.png'
 
 //bala
 
 const imgBala1 = new Image()
-imgBala1.src = '../ProyectoVideoJuegoRUSH/assets/img/bullet.png'
+imgBala1.src = '/ProyectoVideoJuegoRUSH/assets/img/bullet.png'
 
 
 //firts aid kit
 const kit = new Image()
-kit.src = '../ProyectoVideoJuegoRUSH/assets/img/first_aid_kit_PNG135.png'
+kit.src = '/ProyectoVideoJuegoRUSH/assets/img/first_aid_kit_PNG135.png'
 
 
 //Empieza Juego
