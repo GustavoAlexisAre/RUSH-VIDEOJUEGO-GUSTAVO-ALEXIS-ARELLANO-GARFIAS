@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+}
+
+html, body {
+    height: 100%;
+  }
+
+  body {
+    background: radial-gradient(ellipse at top left, #000000 0%, #112233 100%);
+    overflow: hidden;
+  }
+
+  .creditos {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 400px;
+    margin-left: -200px;
+    font: 300 30px/1 'Open Sans Condensed', sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    animation: 20s credits linear infinite;
+  }
+
+  
+@keyframes credits {
+    0% {
+      top: 100%;
+    }
+    100% {
+      top: -150%;
+    }
+  }
+
+  .titulo1 {
+    margin-bottom: 50px;
+    font-size: 50px;
+    
+  }
+  
+   .titulo2 
+    {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 18px;
+  }
+  
+  .nombre {
+    margin-bottom: 50px;
+    font-size: 35px;
+  }
+
+  img{
+    height: 150px;
+    width: 150px;
+  }
+  

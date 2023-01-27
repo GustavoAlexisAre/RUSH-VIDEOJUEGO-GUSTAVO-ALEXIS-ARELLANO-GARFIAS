@@ -419,7 +419,7 @@ function empezarJuego(){
         }
 
         //pantalla ganar 
-        if(survivor.kill === 5){
+        if(survivor.kill === 10){
             canvas.classList.add("none")
             btn1.classList.add("none")
             win.classList.remove("none")
@@ -429,11 +429,11 @@ function empezarJuego(){
             helicopter.volume = 0.1
             victory.play()
             victory.volume = 0.1
-            winSound.play()
-            winSound.volume = 0.4
-            if(tiempo > 3700){
-            winSound.pause()
-            }
+            // winSound.play()
+            // winSound.volume = 0.4
+            // if(tiempo > 3700){
+            // winSound.pause()
+            // }
             
             
         }
@@ -492,9 +492,8 @@ btn.addEventListener("click", () =>{
 
     }, 6000)
 
-    
-    
 
+    level.classList.add("disable")
     btn.classList.add("none")
 })
 //Seleccion Dificultad
@@ -518,6 +517,8 @@ level.addEventListener("click", () => {
             break;
     }
 })
+
+
 // Barra de vida
 function healthbar(){
     if(survivor.vida <= 120){

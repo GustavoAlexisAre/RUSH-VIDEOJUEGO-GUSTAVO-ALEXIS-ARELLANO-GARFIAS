@@ -87,3 +87,7 @@ button span:hover{
     align-items:flex-end;
 }
     
+
+.disable {
+    pointer-events: none;
+}
